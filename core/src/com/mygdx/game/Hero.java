@@ -25,6 +25,7 @@ public class Hero {
     private int jump_counter;
     private int jump_limit;
     private Vector2 startpos;
+    private boolean leftlooking;
 
 
     public Hero() {
@@ -34,6 +35,7 @@ public class Hero {
         tx_right1 = new Texture("HeroRight1.png");
         tx_right2 = new Texture("HeroRight2.png");
         tx_right3 = new Texture("HeroRight3.png");
+        leftlooking = false;
         tx = tx_right1;
         pos = new Vector2(0, 0);
         startpos = new Vector2(0, 0);
@@ -61,35 +63,32 @@ public class Hero {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             speed_x += -0.7;
+            leftlooking = true;
 
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             speed_x += 0.7;
+            leftlooking = false;
 
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
             die();
         }
         Vector2 lastpos = new Vector2(pos.x, pos.y);
-        if(speed_x<0){
-            if(speed_y>-0.8){
+        if (leftlooking) {
+            if (speed_y > -4) {
                 tx = tx_left1;
-            }
-            else if (speed_y<=-0.8 && speed_y >-1.5){
+            } else if (speed_y <= -4 && speed_y > -7) {
                 tx = tx_left2;
-            }
-            else {
+            } else {
                 tx = tx_left3;
             }
-        }
-        if(speed_x>0){
-            if(speed_y>-0.8){
+        } else {
+            if (speed_y > -4) {
                 tx = tx_right1;
-            }
-            else if (speed_y<=-0.8 && speed_y >-1.5){
+            } else if (speed_y <= -4 && speed_y > -7) {
                 tx = tx_right2;
-            }
-            else {
+            } else {
                 tx = tx_right3;
             }
         }
