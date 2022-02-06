@@ -20,6 +20,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public Levels levels;
     public Array<Panel> panels;
     public Array<Spices> spices;
+    public Array<Saw> saws;
     public Array<JumpHelper> jumpHelpers;
     public int current_level;
     public int start_game;
@@ -41,6 +42,7 @@ public class MyGdxGame extends ApplicationAdapter {
         door = new Door();
         panels = new Array<>();
         spices = new Array<>();
+        saws = new Array<>();
         jumpHelpers = new Array<>();
     }
 
@@ -67,6 +69,9 @@ public class MyGdxGame extends ApplicationAdapter {
             for (JumpHelper jumpHelper : jumpHelpers) {
                 jumpHelper.render(batch);
             }
+            for (Saw saw : saws) {
+                saw.render(batch);
+            }
             door.render(batch);
             key.render(batch);
             checkPoint.render(batch);
@@ -86,6 +91,7 @@ public class MyGdxGame extends ApplicationAdapter {
             Vector2 lastHeroPos = hero.update();
             check_panels(lastHeroPos);
             check_spices(lastHeroPos);
+            check_saws();
             check_jumpHelpers();
             check_bg(lastHeroPos);
             check_underwindow();
@@ -107,6 +113,7 @@ public class MyGdxGame extends ApplicationAdapter {
         // читаем посимвольно
         panels.clear();
         spices.clear();
+        saws.clear();
         jumpHelpers.clear();
         checkPoint.delete();
         int c;
@@ -121,6 +128,7 @@ public class MyGdxGame extends ApplicationAdapter {
             // Key - 6
             // CheckPoint - 7
             // JumpHelper - 8
+            // Saw - 9
             if (c == '1') {
                 panels.add(new Panel(x_counter * 50, y_counter * 25));
             }
@@ -146,6 +154,9 @@ public class MyGdxGame extends ApplicationAdapter {
             }
             if (c == '8') {
                 jumpHelpers.add(new JumpHelper(x_counter * 50, y_counter * 25));
+            }
+            if (c == '9') {
+                saws.add(new Saw(x_counter * 50, y_counter * 25));
             }
             x_counter++;
             if (x_counter > 15) {
@@ -201,6 +212,15 @@ public class MyGdxGame extends ApplicationAdapter {
                 hero.die();
                 spice.setSpicesBloodTx();
             }
+        }
+    }
+
+    public void check_saws(){
+        for (Saw saw : saws) {
+            if (saw.getFrameSaw().overlaps(hero.getFrameCirle1()) || saw.getFrameSaw().overlaps(hero.getFrameCirle2())) {
+                hero.die();
+            }
+            saw.update();
         }
     }
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -20,6 +21,8 @@ public class Hero {
     private final Texture tx_left3;
     private final Vector2 pos;
     private final Rectangle frame;
+    private final Circle frameCirle1;
+    private final Circle frameCirle2;
     private int jump_counter;
     private final int jump_limit;
     private final Vector2 startpos;
@@ -45,6 +48,8 @@ public class Hero {
         float height = 48;
         float width = 32;
         frame = new Rectangle(pos.x + 6, pos.y + 1, width - 12, height - 1);
+        frameCirle1 = new Circle(pos.x+16,pos.y+12,14);
+        frameCirle2 = new Circle(pos.x+16,pos.y+36,14);
     }
 
     public void render(SpriteBatch batch) {
@@ -94,6 +99,10 @@ public class Hero {
         pos.x += speed_x;
         frame.x = pos.x + 6;
         frame.y = pos.y + 1;
+        frameCirle1.x = pos.x+16;
+        frameCirle2.x = pos.x+16;
+        frameCirle1.y = pos.y+12;
+        frameCirle2.y = pos.y+36;
         speed_x /= 1.2; //inertion
         if (Math.abs(speed_x) < 0.5) {
             speed_x = 0;
@@ -132,6 +141,14 @@ public class Hero {
 
     public Rectangle getFrame() {
         return frame;
+    }
+
+    public Circle getFrameCirle1() {
+        return frameCirle1;
+    }
+
+    public Circle getFrameCirle2() {
+        return frameCirle2;
     }
 
     public Vector2 getPos() {
