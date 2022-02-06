@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
@@ -13,6 +14,8 @@ public class Hero {
     private float speed_x;
     private final float accelerationdown;
     private Texture tx;
+    private final Sound soundDeath;
+    private final Sound soundJump;
     private final Texture tx_right1;
     private final Texture tx_right2;
     private final Texture tx_right3;
@@ -50,6 +53,9 @@ public class Hero {
         frame = new Rectangle(pos.x + 6, pos.y + 1, width - 12, height - 1);
         frameCirle1 = new Circle(pos.x+16,pos.y+12,14);
         frameCirle2 = new Circle(pos.x+16,pos.y+36,14);
+        soundDeath = Gdx.audio.newSound(Gdx.files.internal("core/sounds/Death.mp3"));
+        soundJump = Gdx.audio.newSound(Gdx.files.internal("core/sounds/ExtraJump.mp3"));
+
     }
 
     public void render(SpriteBatch batch) {
@@ -59,9 +65,9 @@ public class Hero {
     public Vector2 update() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.W)) {
             if (jump_counter < jump_limit) {
+                soundJump.play();
                 speed_y = 8;
                 jump_counter++;
-
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
@@ -160,6 +166,7 @@ public class Hero {
     }
 
     public void die() {
+        soundDeath.play();
         setPos(startpos);
         speed_x = 0;
         speed_y = 0;

@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -22,6 +24,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public Array<Spices> spices;
     public Array<Saw> saws;
     public Array<JumpHelper> jumpHelpers;
+    public Music musicBackGround;
     public int current_level;
     public int start_game;
 
@@ -44,6 +47,8 @@ public class MyGdxGame extends ApplicationAdapter {
         spices = new Array<>();
         saws = new Array<>();
         jumpHelpers = new Array<>();
+        musicBackGround = Gdx.audio.newMusic(Gdx.files.internal("core/sounds/BackGroundMusic.mp3"));
+        musicBackGround.play();
     }
 
     @Override
@@ -81,6 +86,9 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     public void update() throws InterruptedException {
+        if(!musicBackGround.isPlaying()){
+            musicBackGround.play();
+        }
         if (start_game == 0) {
             start_game = menu.update();
             if (start_game == 1) {

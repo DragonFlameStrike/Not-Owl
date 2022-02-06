@@ -14,7 +14,7 @@ public class Levels {
             level4,
             level5
     };
-    private int current_level = 4;
+    private int current_level = 0;
     public void NextLevel(){
         current_level++;
     }
