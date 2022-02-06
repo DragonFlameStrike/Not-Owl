@@ -15,11 +15,12 @@ public class MyGdxGame extends ApplicationAdapter {
     public Hero hero;
     public Door door;
     public Key key;
-    public CheckPoint checkpoint;
+    public CheckPoint checkPoint;
     public MainMenu menu;
     public Levels levels;
     public Array<Panel> panels;
     public Array<Spices> spices;
+    public Array<JumpHelper> jumpHelpers;
     public int current_level;
     public int start_game;
 
@@ -36,11 +37,11 @@ public class MyGdxGame extends ApplicationAdapter {
         start_game = 0;
         hero = new Hero();
         key = new Key();
-        checkpoint = new CheckPoint();
+        checkPoint = new CheckPoint();
         door = new Door();
         panels = new Array<>();
         spices = new Array<>();
-
+        jumpHelpers = new Array<>();
     }
 
     @Override
@@ -63,10 +64,13 @@ public class MyGdxGame extends ApplicationAdapter {
             for (Panel panel : panels) {
                 panel.render(batch);
             }
+            for (JumpHelper jumpHelper : jumpHelpers) {
+                jumpHelper.render(batch);
+            }
             door.render(batch);
-            hero.render(batch);
             key.render(batch);
-            checkpoint.render(batch);
+            checkPoint.render(batch);
+            hero.render(batch);
         }
         batch.end();
     }
@@ -82,6 +86,7 @@ public class MyGdxGame extends ApplicationAdapter {
             Vector2 lastHeroPos = hero.update();
             check_panels(lastHeroPos);
             check_spices(lastHeroPos);
+            check_jumpHelpers();
             check_bg(lastHeroPos);
             check_underwindow();
             check_door();
@@ -113,6 +118,7 @@ public class MyGdxGame extends ApplicationAdapter {
             // CloseDoor - 5
             // Key - 6
             // CheckPoint - 7
+            // JumpHelper - 8
             if (c == '1') {
                 panels.add(new Panel(x_counter * 50, y_counter * 25));
             }
@@ -134,7 +140,10 @@ public class MyGdxGame extends ApplicationAdapter {
                 key = new Key(x_counter * 50, y_counter * 25);
             }
             if (c == '7') {
-                checkpoint = new CheckPoint(x_counter * 50, y_counter * 25);
+                checkPoint = new CheckPoint(x_counter * 50, y_counter * 25);
+            }
+            if (c == '8') {
+                jumpHelpers.add(new JumpHelper(x_counter * 50, y_counter * 25));
             }
             x_counter++;
             if (x_counter > 15) {
@@ -193,6 +202,16 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
 
+    public void check_jumpHelpers(){
+        for (JumpHelper jumpHelper : jumpHelpers) {
+            if (hero.getFrame().overlaps(jumpHelper.getFrame())) {
+                hero.resetJump_counter();
+                jumpHelper.delete();
+            }
+            jumpHelper.update();
+        }
+    }
+
     public void check_bg(Vector2 lastHeroPos) {
         if (hero.getFrame().overlaps(bg.getFrameLeft()) || hero.getFrame().overlaps(bg.getFrameRight())) {
             hero.setSpeed_x(0);
@@ -208,10 +227,10 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     public void check_checkpoint(){
-        if (hero.getFrame().overlaps(checkpoint.getFrame())) {
-            Vector2 current_pos = new Vector2(checkpoint.getPos_x(),checkpoint.getPos_y());
+        if (hero.getFrame().overlaps(checkPoint.getFrame())) {
+            Vector2 current_pos = new Vector2(checkPoint.getPos_x(), checkPoint.getPos_y());
             hero.setStartpos(current_pos);
-            checkpoint.setCheckPointActiveTx();
+            checkPoint.setCheckPointActiveTx();
         }
     }
 

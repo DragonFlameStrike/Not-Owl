@@ -52,7 +52,7 @@ public class Hero {
     }
 
     public Vector2 update() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.W)) {
             if (jump_counter < jump_limit) {
                 speed_y = 8;
                 jump_counter++;
