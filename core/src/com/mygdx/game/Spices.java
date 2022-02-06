@@ -6,47 +6,45 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Spices {
-    private float height;
-    private float width;
     private Texture tx;
-    private Vector2 pos;
-    private Rectangle frameup;
-    private Rectangle framespices;
-    private Rectangle frameleft;
-    private Rectangle frameright;
-    private Rectangle framedown;
+    private final Vector2 pos;
+    private final Rectangle frameUp;
+    private final Rectangle frameSpices;
+    private final Rectangle frameLeft;
+    private final Rectangle frameRight;
+    private final Rectangle frameDown;
 
 
 
-    public Spices(int posx,int posy){
+    public Spices(int pos_x,int pos_y){
         tx = new Texture("Spices.png");
-        pos = new Vector2(posx,posy);
-        height=25;
-        width=50;
-        frameup = new Rectangle(pos.x,pos.y+11,width,1);
-        framespices = new Rectangle(pos.x+4,pos.y+14,width-8,10);
-        frameleft = new Rectangle(pos.x,pos.y,1,height-12);
-        frameright = new Rectangle(pos.x+width-1,pos.y,1,height-12);
-        framedown = new Rectangle(pos.x,pos.y,width,1);
+        pos = new Vector2(pos_x,pos_y);
+        float height = 25;
+        float width = 50;
+        frameUp = new Rectangle(pos.x,pos.y+11, width,1);
+        frameSpices = new Rectangle(pos.x+4,pos.y+14, width -8,10);
+        frameLeft = new Rectangle(pos.x,pos.y,1, height -12);
+        frameRight = new Rectangle(pos.x+ width -1,pos.y,1, height -12);
+        frameDown = new Rectangle(pos.x,pos.y, width,1);
 
     }
     public void render(SpriteBatch batch){
         batch.draw(tx,pos.x,pos.y);
     }
-    public Rectangle getFrameup(){
-        return frameup;
+    public Rectangle getFrameUp(){
+        return frameUp;
     }
-    public Rectangle getFramespices(){
-        return framespices;
+    public Rectangle getFrameSpices(){
+        return frameSpices;
     }
-    public Rectangle getFrameleft(){
-        return frameleft;
+    public Rectangle getFrameLeft(){
+        return frameLeft;
     }
-    public Rectangle getFrameright(){
-        return frameright;
+    public Rectangle getFrameRight(){
+        return frameRight;
     }
-    public Rectangle getFramedown(){
-        return framedown;
+    public Rectangle getFrameDown(){
+        return frameDown;
     }
     public void setSpicesBloodTx(){ tx = new Texture("SpicesBlood.png");}
 

@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 public class BackGround {
     private final Texture tx;
     private final Vector2 pos;
-    public Rectangle frameleft = new Rectangle(0, 0, 1, 600);
-    public Rectangle frameright = new Rectangle(800, 0, 1, 600);
+    public Rectangle frameLeft = new Rectangle(0, 0, 1, 600);
+    public Rectangle frameRight = new Rectangle(800, 0, 1, 600);
 
     public BackGround() {
         tx = new Texture("BackGround1.png");
@@ -20,11 +20,11 @@ public class BackGround {
         batch.draw(tx, pos.x, pos.y);
     }
 
-    public Rectangle getFrameleft() {
-        return frameleft;
+    public Rectangle getFrameLeft() {
+        return frameLeft;
     }
 
-    public Rectangle getFrameright() {
-        return frameright;
+    public Rectangle getFrameRight() {
+        return frameRight;
     }
 }

@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Key {
-    private float height;
-    private float width;
-    private Texture tx;
-    private Vector2 pos;
+    private final float height;
+    private final float width;
+    private final Texture tx;
+    private final Vector2 pos;
     private Rectangle frame;
     public Key() {
         tx = new Texture("Key.png");

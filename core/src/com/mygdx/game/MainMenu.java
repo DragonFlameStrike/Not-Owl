@@ -4,17 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-import java.lang.reflect.Array;
 
 public class MainMenu {
-    private float height;
-    private float width;
     private Texture tx;
-    private Vector2 pos;
-    private String[] textures;
+    private final Vector2 pos;
+    private final String[] textures;
     private int current_texture;
 
 
@@ -26,8 +22,7 @@ public class MainMenu {
         current_texture=0;
         tx = new Texture(textures[current_texture]);
         pos = new Vector2(0,0);
-        height=600;
-        width=800;
+
 
     }
     public void render(SpriteBatch batch){

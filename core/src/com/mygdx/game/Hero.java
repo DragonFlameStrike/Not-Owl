@@ -10,21 +10,19 @@ import com.badlogic.gdx.math.Vector2;
 public class Hero {
     private float speed_y;
     private float speed_x;
-    private float accelerationdown;
-    private float height;
-    private float width;
+    private final float accelerationdown;
     private Texture tx;
-    private Texture tx_right1;
-    private Texture tx_right2;
-    private Texture tx_right3;
-    private Texture tx_left1;
-    private Texture tx_left2;
-    private Texture tx_left3;
-    private Vector2 pos;
-    private Rectangle frame;
+    private final Texture tx_right1;
+    private final Texture tx_right2;
+    private final Texture tx_right3;
+    private final Texture tx_left1;
+    private final Texture tx_left2;
+    private final Texture tx_left3;
+    private final Vector2 pos;
+    private final Rectangle frame;
     private int jump_counter;
-    private int jump_limit;
-    private Vector2 startpos;
+    private final int jump_limit;
+    private final Vector2 startpos;
     private boolean leftlooking;
 
 
@@ -44,8 +42,8 @@ public class Hero {
         jump_counter = 0;
         jump_limit = 2;
         accelerationdown = -0.7f;
-        height = 48;
-        width = 32;
+        float height = 48;
+        float width = 32;
         frame = new Rectangle(pos.x + 6, pos.y + 1, width - 12, height - 1);
     }
 
@@ -62,7 +60,7 @@ public class Hero {
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            speed_x += -0.7;
+            speed_x -= 0.7;
             leftlooking = true;
 
         }

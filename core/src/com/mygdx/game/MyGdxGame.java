@@ -1,14 +1,10 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import javax.swing.text.html.HTMLDocument;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -42,8 +38,8 @@ public class MyGdxGame extends ApplicationAdapter {
         key = new Key();
         checkpoint = new CheckPoint();
         door = new Door();
-        panels = new Array();
-        spices = new Array();
+        panels = new Array<>();
+        spices = new Array<>();
 
     }
 
@@ -151,20 +147,20 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public void check_panels(Vector2 lastHeroPos) {
         for (Panel panel : panels) {
-            if (hero.getFrame().overlaps(panel.getFrameup())) {
+            if (hero.getFrame().overlaps(panel.getFrameUp())) {
                 hero.setSpeed_y(0);
                 hero.resetJump_counter();
                 hero.setPos_y(lastHeroPos.y);
             }
-            if (hero.getFrame().overlaps(panel.getFrameleft())) {
+            if (hero.getFrame().overlaps(panel.getFrameLeft())) {
                 hero.setSpeed_x(0);
                 hero.setPos_x(lastHeroPos.x);
             }
-            if (hero.getFrame().overlaps(panel.getFrameright())) {
+            if (hero.getFrame().overlaps(panel.getFrameRight())) {
                 hero.setSpeed_x(0);
                 hero.setPos_x(lastHeroPos.x);
             }
-            if (hero.getFrame().overlaps(panel.getFramedown())) {
+            if (hero.getFrame().overlaps(panel.getFrameDown())) {
                 hero.setSpeed_y(0);
                 hero.setPos_y(lastHeroPos.y);
             }
@@ -173,24 +169,24 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public void check_spices(Vector2 lastHeroPos) {
         for (Spices spice : spices) {
-            if (hero.getFrame().overlaps(spice.getFrameup())) {
+            if (hero.getFrame().overlaps(spice.getFrameUp())) {
                 hero.setSpeed_y(0);
                 hero.resetJump_counter();
                 hero.setPos_y(lastHeroPos.y);
             }
-            if (hero.getFrame().overlaps(spice.getFrameleft())) {
+            if (hero.getFrame().overlaps(spice.getFrameLeft())) {
                 hero.setSpeed_x(0);
                 hero.setPos_x(lastHeroPos.x);
             }
-            if (hero.getFrame().overlaps(spice.getFrameright())) {
+            if (hero.getFrame().overlaps(spice.getFrameRight())) {
                 hero.setSpeed_x(0);
                 hero.setPos_x(lastHeroPos.x);
             }
-            if (hero.getFrame().overlaps(spice.getFramedown())) {
+            if (hero.getFrame().overlaps(spice.getFrameDown())) {
                 hero.setSpeed_y(0);
                 hero.setPos_y(lastHeroPos.y);
             }
-            if (hero.getFrame().overlaps(spice.getFramespices())) {
+            if (hero.getFrame().overlaps(spice.getFrameSpices())) {
                 hero.die();
                 spice.setSpicesBloodTx();
             }
@@ -198,7 +194,7 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     public void check_bg(Vector2 lastHeroPos) {
-        if (hero.getFrame().overlaps(bg.getFrameleft()) || hero.getFrame().overlaps(bg.getFrameright())) {
+        if (hero.getFrame().overlaps(bg.getFrameLeft()) || hero.getFrame().overlaps(bg.getFrameRight())) {
             hero.setSpeed_x(0);
             hero.setPos_x(lastHeroPos.x);
         }
@@ -215,7 +211,7 @@ public class MyGdxGame extends ApplicationAdapter {
         if (hero.getFrame().overlaps(checkpoint.getFrame())) {
             Vector2 current_pos = new Vector2(checkpoint.getPos_x(),checkpoint.getPos_y());
             hero.setStartpos(current_pos);
-            checkpoint.setCheckPointAtciveTx();
+            checkpoint.setCheckPointActiveTx();
         }
     }
 

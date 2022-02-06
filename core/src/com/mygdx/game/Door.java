@@ -6,11 +6,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Door {
-    private float height;
-    private float width;
+    private final float height;
+
     private Texture tx;
-    private Vector2 pos;
-    private Rectangle frame;
+    private final Vector2 pos;
+    private final Rectangle frame;
     private boolean close;
 
 
@@ -19,7 +19,7 @@ public class Door {
         close = true;
         pos = new Vector2(-100, -100);
         height = 50;
-        width = 40;
+
         frame = new Rectangle(pos.x + 25, pos.y, 1, height / 2);
     }
     public Door(int posx, int posy, boolean closed) {
@@ -32,7 +32,7 @@ public class Door {
         }
         pos = new Vector2(posx + 5, posy);
         height = 50;
-        width = 40;
+
         frame = new Rectangle(pos.x + 25, pos.y, 1, height / 2);
 
     }

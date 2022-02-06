@@ -6,11 +6,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class CheckPoint {
-    private float height;
-    private float width;
+    private final float height;
+    private final float width;
     private Texture tx;
-    private Vector2 pos;
-    private Rectangle frame;
+    private final Vector2 pos;
+    private final Rectangle frame;
     public CheckPoint() {
         tx = new Texture("CheckPoint.png");
         pos = new Vector2(-100, -100);
@@ -41,5 +41,5 @@ public class CheckPoint {
     public float getPos_y(){
         return pos.y;
     }
-    public void setCheckPointAtciveTx(){ tx = new Texture("CheckPointActive.png");}
+    public void setCheckPointActiveTx(){ tx = new Texture("CheckPointActive.png");}
 }

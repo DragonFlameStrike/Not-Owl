@@ -6,42 +6,40 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Panel {
-    private float height;
-    private float width;
-    private Texture tx;
-    private Vector2 pos;
-    private Rectangle frameup;
-    private Rectangle frameleft;
-    private Rectangle frameright;
-    private Rectangle framedown;
+    private final Texture tx;
+    private final Vector2 pos;
+    private final Rectangle frameUp;
+    private final Rectangle frameLeft;
+    private final Rectangle frameRight;
+    private final Rectangle frameDown;
 
 
 
-    public Panel(int posx,int posy){
+    public Panel(int pos_x,int pos_y){
         tx = new Texture("Panel.png");
-        pos = new Vector2(posx,posy);
-        height=25;
-        width=50;
-        frameup = new Rectangle(pos.x,pos.y+height,width,1);
-        frameleft = new Rectangle(pos.x,pos.y,1,height-2);
-        frameright = new Rectangle(pos.x+width-1,pos.y,1,height-2);
-        framedown = new Rectangle(pos.x,pos.y,width,1);
+        pos = new Vector2(pos_x,pos_y);
+        float height = 25;
+        float width = 50;
+        frameUp = new Rectangle(pos.x,pos.y+ height, width,1);
+        frameLeft = new Rectangle(pos.x,pos.y,1, height -2);
+        frameRight = new Rectangle(pos.x+ width -1,pos.y,1, height -2);
+        frameDown = new Rectangle(pos.x,pos.y, width,1);
 
     }
     public void render(SpriteBatch batch){
         batch.draw(tx,pos.x,pos.y);
     }
-    public Rectangle getFrameup(){
-        return frameup;
+    public Rectangle getFrameUp(){
+        return frameUp;
     }
-    public Rectangle getFrameleft(){
-        return frameleft;
+    public Rectangle getFrameLeft(){
+        return frameLeft;
     }
-    public Rectangle getFrameright(){
-        return frameright;
+    public Rectangle getFrameRight(){
+        return frameRight;
     }
-    public Rectangle getFramedown(){
-        return framedown;
+    public Rectangle getFrameDown(){
+        return frameDown;
     }
 
 
