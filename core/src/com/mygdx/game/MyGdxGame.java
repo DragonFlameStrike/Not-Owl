@@ -107,6 +107,8 @@ public class MyGdxGame extends ApplicationAdapter {
         // читаем посимвольно
         panels.clear();
         spices.clear();
+        jumpHelpers.clear();
+        checkPoint.delete();
         int c;
         int x_counter = 0;
         int y_counter = 23;
